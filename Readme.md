@@ -10,7 +10,7 @@ Prepare lots of work with tasks in the middle that take a lock and sleep. This a
 
 Negative. It's at best the same as taking a normal lock, and at worst 5-10% slower.
 
-From profiler captures it can be seen that some threads start lots of jobs that take the lock, which means their callstacks are really deep. This is due to the nature of due `rayon::yield_now()`, which doesn't really stop the outer job, as it just opens a new one below it and returns to the outer one once it's finished.
+From profiler captures it can be seen that some threads start lots of jobs that take a lock, which means their callstacks are really deep. This is due to the nature of due `rayon::yield_now()`, which doesn't really stop the outer job, as it just opens a new one below it and returns to the outer one once it's finished.
 
 ## Proposal
 
