@@ -6,3 +6,27 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+rayon = {version = "*"}
+
+
+[target.'cfg(windows)'.dependencies.windows-sys]
+version = "*"
+features = [
+    "Win32_Foundation",
+    "Win32_System_Threading",
+]
+
+
+# Testing related below
+[dev-dependencies]
+criterion = {version = "*"}
+
+[[bench]]
+name = "my_benchmark"
+harness = false
+
+[profile.bench]
+debug = true # use this to debug if necessary
+
+[profile.release]
+debug = true # use this to debug if necessary
