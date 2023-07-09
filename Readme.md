@@ -1,5 +1,11 @@
 # Test Coop Rayon
 
+## Problem
+
+We want to update entity clusters as the [Hybrid Actor/ECS object model](https://www.youtube.com/watch?v=jjEsB611kxs) proposed by Bobby Anguelov. They could be parallelized by updating them in tasks, but their code might take locks (as gameplay code is kind of unbound). We don't want to sleep a worker thread if it could take other jobs, while the lock is taken by another thread.
+
+## Possible solution
+
 Test if it would be better to yield back to rayon rather than sleeping while taking a lock.
 
 ## Test
